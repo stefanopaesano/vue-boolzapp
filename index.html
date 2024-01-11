@@ -4,6 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Layout simile a WhatsApp</title>
+         <!-- collegamento vue -->
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+       <!-- collegamento a google -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
   <!-- Collegamento al CSS di Bootstrap -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="style.css">
@@ -24,9 +29,9 @@
                 
                 
 
-                <li style="margin-left: auto;">app</li>
-                <li >app</li>
-                <li >app</li>
+                <li style="margin-left: auto;"><span class="material-symbols-outlined">settings</span></li>
+                <li >  <span class="material-symbols-outlined">home</span></li>
+                <li >  <span class="material-symbols-outlined">arrow_back</span></li>
 
                 
                 
@@ -48,8 +53,18 @@
 
         <div>
 
+            <div id="app">
+                <ul>
+                  <li v-for="content in contacts" :key="contact.name" class="contact-item">
+                    <img :src="contact.avatar" alt="Contact Avatar" width="50" height="50">
+                    <span>{{ contact.name }}</span>
+                  </li>
+                </ul>
+            </div>
+
             
             <ul class="contact-list">
+                
 
                 <li class="contact-item d-flex ">
 
@@ -140,9 +155,9 @@
                 </li>
                 
             </ul>
-
-
         </div>
+           
+
 
 
 
@@ -162,9 +177,9 @@
                         
                     
                         <li>stefano</li>
-                        <li style="margin-left: auto;">icona</li>
-                        <li>icona</li>
-                        <li>icona</li>
+                        <li style="margin-left: auto;"><span class="material-symbols-outlined">settings</span></li>
+                        <li >  <span class="material-symbols-outlined">home</span></li>
+                        <li >  <span class="material-symbols-outlined">arrow_back</span></li>
                     </ul>
                 </div>
             </div>
@@ -183,6 +198,8 @@
     </div>
   </div>
 </div>
+
+<script src="script.js"></script>
 
 
 
