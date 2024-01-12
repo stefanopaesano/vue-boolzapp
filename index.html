@@ -15,17 +15,18 @@
 </head>
 <body>
 
-<div class="container">
+<div class="container" id="app">
+
   <div class="row">
     <!-- Sidebar -->
-    <div class="conatiner-l col-md-4 bg-light ">
+    <div class="container-primo bg-light ">
         <div class="header-navbar">
             <ul class="d-flex">
             
                 <div class="icona">
-                        aaa
+                        <img src="./img/avatar_io.jpg" alt="">
                 </div>   
-                <li>stefano</li>
+                <li>chiara</li>
                 
                 
 
@@ -39,122 +40,74 @@
 
         </div>
 
+          <!-- messaggio di allerta -->
         <div class="messaggio-allerta d-flex bg-danger ">
 
             <div class="icona">
-                aaa
+            
             </div>
+
+
             <h6> ricevi notifiche sui nuovi messaggi</h6>
             
 
         </div>
-         
+
+
+         <!-- INPUT CERCA  -->
         <input type="search" id="gsearch" name="gsearch" style="width: 100%; height: 40px;" placeholder="cerca o inizia una nuova chat ">
 
-        <div>
 
-            <div id="app">
-                <ul>
-                  <li v-for="content in contacts" :key="contact.name" class="contact-item">
-                    <img :src="contact.avatar" alt="Contact Avatar" width="50" height="50">
-                    <span>{{ contact.name }}</span>
-                  </li>
+        <!-- inizioapp -->
+
+        <div class="lista-contatti" >
+
+            <div v-for="contact in contacts" :key="contact.name" class="contact-item" @click="setActiveContact(contact)">
+
+                <ul >
+
+
+                    <li class="d-flex">
+
+                        <div class="icona">
+                            <img :src="contact.avatar" alt="Contact Avatar" width="50" height="50">
+                        </div>
+
+                        <div>
+
+                            <p>{{ contact.name }}</p> 
+                        
+                            <p> ultimo mess inviato </p>
+
+                        </div>
+                        
+                        
+                        
+
+
+                        <span style="margin-left: auto;" class="last-message text-bg-light ">
+                            12:00 pm
+                        </span>
+    
+                        
+            
+                    </li>
+
+                    
+                    
+
                 </ul>
+
+                
+
+            </div>
+            <div v-if="activeContact">
+                <!-- Il tuo codice per visualizzare la conversazione dell'activeContact -->
             </div>
 
             
-            <ul class="contact-list">
-                
-
-                <li class="contact-item d-flex ">
-
-                    <div class="icona">
-                        aaa
-
-                    </div>
-
-                    <span>Stefano</span>
-
-                </li>
-
-                <li class="contact-item d-flex ">
-                    
-                    <div class="icona">
-                        aaa
-    
-                    </div>
-    
-                    <span>Stefano</span>
-    
-                </li>
-
-                <li class="contact-item d-flex ">
-                    
-                    <div class="icona">
-                        aaa
-    
-                    </div>
-    
-                    <span>Stefano</span>
-    
-                </li>
-
-                <li class="contact-item d-flex ">
-                    
-                    <div class="icona">
-                        aaa
-    
-                    </div>
-    
-                    <span>Stefano</span>
-    
-                </li>
-
-                <li class="contact-item d-flex ">
-                    
-                    <div class="icona">
-                        aaa
-    
-                    </div>
-    
-                    <span>Stefano</span>
-    
-                </li>
-
-                <li class="contact-item d-flex ">
-                    
-                    <div class="icona">
-                        aaa
-    
-                    </div>
-    
-                    <span>Stefano</span>
-    
-                </li>
-
-                <li class="contact-item d-flex ">
-                    
-                    <div class="icona">
-                        aaa
-    
-                    </div>
-    
-                    <span>Stefano</span>
-    
-                </li>
-
-                <li class="contact-item d-flex ">
-                    
-                    <div class="icona">
-                        aaa
-    
-                    </div>
-    
-                    <span>Stefano</span>
-    
-                </li>
-                
-            </ul>
+            
+            
         </div>
            
 
@@ -162,31 +115,42 @@
 
 
     </div>
+
+    <!-- fineapp -->
     
     
     <!-- Area di chat -->
     <div class="col-md-8  p-lg-0 ">
+
         <div class="chat-container">
+
             <!-- Intestazione della chat -->
             <div class="chat-header bg-primary text-white p-3">
                 <div>
+
                     <ul class="contenitore-icona-dx d-flex">
 
                         
-                        <div class="icona-dx">iii</div>
-                        
-                    
-                        <li>stefano</li>
+
+                        <div class="icona-dx">
+                            <img :src="activeContact.avatar" alt="Active Contact Avatar" width="50" height="50">
+                        </div>
+                        {{ activeContact.name }}
+
                         <li style="margin-left: auto;"><span class="material-symbols-outlined">settings</span></li>
-                        <li >  <span class="material-symbols-outlined">home</span></li>
-                        <li >  <span class="material-symbols-outlined">arrow_back</span></li>
+                        <li><span class="material-symbols-outlined">home</span></li>
+                        <li><span class="material-symbols-outlined">arrow_back</span></li>
+
+                        
                     </ul>
+
                 </div>
             </div>
 
             <!-- Messaggi della chat -->
-            <div class="chat-messages p-3">
-            
+            <div class="chat-messages p-3" v-if="activeContact">
+                
+                
             </div>
 
             <!-- Inserimento messaggio -->
@@ -194,7 +158,11 @@
                 <input type="text" class="form-control" placeholder="Scrivi il tuo messaggio...">
                 <button class="btn btn-primary ">Invia</button>
             </div>
+
+
         </div>
+
+
     </div>
   </div>
 </div>
