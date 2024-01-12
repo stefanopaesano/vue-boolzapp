@@ -13,6 +13,11 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="style.css">
 </head>
+
+
+
+
+
 <body>
 
 <div class="container" id="app">
@@ -20,7 +25,11 @@
   <div class="row">
     <!-- Sidebar -->
     <div class="container-primo bg-light ">
+
+
         <div class="header-navbar">
+
+
             <ul class="d-flex">
             
                 <div class="icona">
@@ -41,14 +50,14 @@
         </div>
 
           <!-- messaggio di allerta -->
-        <div class="messaggio-allerta d-flex bg-danger ">
+        <div class="messaggio-allerta d-flex bg-primary ">
 
             <div class="icona">
-            
+               <img src="https://webstockreview.net/images/bell-icon-png-1.png" alt="" >
             </div>
 
 
-            <h6> ricevi notifiche sui nuovi messaggi</h6>
+            <h6 class="text-light "> ricevi notifiche sui nuovi messaggi</h6>
             
 
         </div>
@@ -120,7 +129,7 @@
     
     
     <!-- Area di chat -->
-    <div class="col-md-8  p-lg-0 ">
+    <div class="container-secondo ">
 
         <div class="chat-container">
 
@@ -149,15 +158,39 @@
 
             <!-- Messaggi della chat -->
             <div class="chat-messages p-3" v-if="activeContact">
+
+                <div v-for="message in activeContact.messages" :key="message.date" class="message   ">
+                    <div v-if="message.status === 'sent'" class="sent-message ">
+                        <p class="d-flex justify-content-end  ">{{ message.message }}</p>
+                        <p class=" d-flex justify-content-end message-time">{{ message.date }}</p>
+                    </div>
+                    <div v-else class="received-message">
+                        <p>{{ message.message }}</p>
+                        <span class="message-time">{{ message.date }}</span>
+                    </div>
+                </div>
+
+                <ul v-if="todos.length > 0">
+                    <li v-for="(elem, i) in todos">
+                        {{elem}}
+                    
+                    <!-- <button @click="removetodo(i)" Sclass="mybutton">x</button> -->
+        
+                    </li>
+                    
+                  
+                </ul>
                 
                 
             </div>
 
             <!-- Inserimento messaggio -->
             <div class="message-input p-3 d-flex ">
-                <input type="text" class="form-control" placeholder="Scrivi il tuo messaggio...">
-                <button class="btn btn-primary ">Invia</button>
+                <input type="text" class="form-control" v-model="newTodo" placeholder="Scrivi il tuo messaggio...">
+                <button  @click="addTodo()" class="btn btn-primary ">Invia</button>
             </div>
+
+            
 
 
         </div>

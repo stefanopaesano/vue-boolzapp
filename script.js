@@ -2,6 +2,8 @@ const { createApp } = Vue;
 const app = createApp({
     data() {
         return {
+            newTodo: '', 
+            todos: [],
             activeContact:[0],
             contacts: [
                 {
@@ -174,6 +176,19 @@ const app = createApp({
         setActiveContact(contact) {
             console.log('Cliccato su:', contact);
             this.activeContact = contact;
-        }
-    }
-});app.mount("#app")
+        },
+        addTodo() {
+            if (this.newTodo.trim().length > 0) {
+                this.todos.push(this.newTodo.trim());
+                this.newTodo = ''; // Aggiunto per svuotare l'input dopo l'aggiunta
+                console.log(newTodo)
+            }
+        },
+        // removetodo(i) {
+        //     console.log(i, this.todos[i]);
+        //     this.todos.splice(i, 1);
+        // },
+        // ... altre funzioni ...
+    },
+});
+app.mount("#app");

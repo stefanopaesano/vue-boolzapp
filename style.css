@@ -13,6 +13,11 @@ img{
     padding-right: 0;
     line-height: 0;
 }
+.container-secondo{
+    width: 70%;
+    padding-right: 0;
+    line-height: 0;
+}
 
 .header-navbar{
     border: 1px solid black;
@@ -61,4 +66,31 @@ li {
 .message-input{
     border: 1px solid black;
     
+}
+
+.chat-messages {
+    height: 300px;
+    border: 1px solid black;
+    overflow-y: auto;
+}
+
+.message {
+    margin-bottom: 10px;
+}
+
+.sent-message {
+    background-color: #7ed73a;
+    padding: 8px;
+    border-radius: 8px;
+}
+
+.received-message {
+    background-color: #e11818;
+    padding: 8px;
+    border-radius: 8px;
+}
+
+.message-time {
+    font-size: 10px;
+    color: #666;
 }
