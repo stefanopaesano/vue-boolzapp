@@ -177,18 +177,51 @@ const app = createApp({
             console.log('Cliccato su:', contact);
             this.activeContact = contact;
         },
-        addTodo() {
-            if (this.newTodo.trim().length > 0) {
-                this.todos.push(this.newTodo.trim());
-                this.newTodo = ''; // Aggiunto per svuotare l'input dopo l'aggiunta
-                console.log(newTodo)
-            }
-        },
+        // addTodo() {
+        //     if (this.newTodo.trim().length > 0) {
+        //         this.todos.push(this.newTodo.trim());
+        //         this.newTodo = ''; // Aggiunto per svuotare l'input dopo l'aggiunta
+                
+                
+        //     }
+        // },
         // removetodo(i) {
         //     console.log(i, this.todos[i]);
         //     this.todos.splice(i, 1);
         // },
-        // ... altre funzioni ...
-    },
-});
+        addTodo() {
+            if (this.newTodo.trim().length > 0) {
+                // Aggiungi il tuo messaggio
+                const newMessage = {
+                    date: new Date().toLocaleString(),
+                    message: this.newTodo.trim(),
+                    status: 'sent',
+                };
+                this.activeContact.messages.push(newMessage);
+                this.newTodo = ''; // Svuota l'input dopo l'aggiunta
+        
+                // Simula una risposta dopo un secondo
+                setTimeout(() => {
+                    const replyMessage = {
+                        date: new Date().toLocaleString(),
+                        message: 'OK',
+                        status: 'received',
+                    };
+                    this.activeContact.messages.push(replyMessage);
+                }, 1000);
+            }
+        }
+        
+        
+    }
+    
+       });
 app.mount("#app");
+
+
+
+
+
+
+
+

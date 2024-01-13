@@ -168,13 +168,17 @@
                         <p>{{ message.message }}</p>
                         <span class="message-time">{{ message.date }}</span>
                     </div>
+                    <div v-if="message.status === 'sent' && message.showOkResponse">
+                        <p class="received-message">OK</p>
+                        <span class="message-time">{{ new Date().toLocaleString() }}</span>
+                    </div>
                 </div>
 
                 <ul v-if="todos.length > 0">
-                    <li v-for="(elem, i) in todos">
+                    <li v-for="(elem, i) in todos" class="style-li">
                         {{elem}}
                     
-                    <!-- <button @click="removetodo(i)" Sclass="mybutton">x</button> -->
+                     <!-- <button @click="removetodo(i)" Sclass="mybutton">x</button> -->
         
                     </li>
                     
