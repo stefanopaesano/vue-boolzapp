@@ -2,6 +2,7 @@ const { createApp } = Vue;
 const app = createApp({
     data() {
         return {
+            searchInput: '',
             newTodo: '', 
             todos: [],
             activeContact:[0],
@@ -210,10 +211,23 @@ const app = createApp({
                     this.activeContact.messages.push(replyMessage);
                 }, 1000);
             }
-        }
+        },
+
+        search() {
+            console.log('this.searchInput: ', this.searchInput)
+            this.contacts.forEach(contact => {
+                if (contact.name.toLowerCase().includes(this.searchInput.toLowerCase().trim())) {
+                    contact.visible = true;
+                } else {
+                    contact.visible = false;
+                }
+                
+            });
+        } //implementazione del input non riuscita/ dopo aver parlato col tutor ho capito l'errore(non dichiaravo il mio se nel html )
         
         
     }
+    
     
        });
 app.mount("#app");

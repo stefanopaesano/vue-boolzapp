@@ -64,8 +64,14 @@
 
 
          <!-- INPUT CERCA  -->
-        <input type="search" id="gsearch" name="gsearch" style="width: 100%; height: 40px;" placeholder="cerca o inizia una nuova chat ">
-
+        <div class="d-flex ">
+            <input type="search"  v-model="searchInput" @input="search()" placeholder="Cerca o inizia una nuova chat..." style="width: 100%;">
+            <button @click="search()" >
+               search
+            </button>
+        </div>
+        
+        
 
         <!-- inizioapp -->
 
@@ -73,10 +79,10 @@
 
             <div v-for="contact in contacts" :key="contact.name" class="contact-item" @click="setActiveContact(contact)">
 
-                <ul >
+                <ul>
 
 
-                    <li class="d-flex">
+                    <li class="d-flex" v-if="contact.visible === true">
 
                         <div class="icona">
                             <img :src="contact.avatar" alt="Contact Avatar" width="50" height="50">
@@ -111,7 +117,7 @@
 
             </div>
             <div v-if="activeContact">
-                <!-- Il tuo codice per visualizzare la conversazione dell'activeContact -->
+                
             </div>
 
             
@@ -161,8 +167,10 @@
 
                 <div v-for="message in activeContact.messages" :key="message.date" class="message   ">
                     <div v-if="message.status === 'sent'" class="sent-message ">
+
                         <p class="d-flex justify-content-end  ">{{ message.message }}</p>
                         <p class=" d-flex justify-content-end message-time">{{ message.date }}</p>
+                        
                     </div>
                     <div v-else class="received-message">
                         <p>{{ message.message }}</p>
